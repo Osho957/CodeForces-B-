@@ -5,36 +5,42 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.StringTokenizer;
- 
-public class PetyaAndCountrySide {
- // Question Link : https://codeforces.com/contest/66/problem/B
+ // snippet
+public class SumOfDigit {
+ // Question Link : https://codeforces.com/contest/102/problem/B
 	public static void main(String[] args) {
 		FastScanner sc=new FastScanner();
-		int T=sc.nextInt();
-		int arr[] = new int[T];
-		for (int tt=0; tt<T; tt++) {
-			arr[tt]=sc.nextInt();
+		String string = sc.next();
+		long sum =0;
+		for (int i = 0; i < string.length(); i++) {
+			sum+=Integer.parseInt(string.charAt(i)+"");
 		}
-	  
-		int max =1;
-		for (int i = 0; i < arr.length; i++) {
-			int j =1;
-			int x = i;
-			int y = i;
-			while(x>0&&arr[x-1]-arr[x]<=0) {
-				j++;
-				x--;
-			}
-			while(y<T-1&&arr[y+1]-arr[y]<=0) {
-				y++;
-				j++;
-			}
-			max = Math.max(max, j);
+		// single digit 
+//		System.out.println(sum);
+		
+		int count =0;
+		if(string.length()>=2) {
+			count =1;
 		}
-			System.out.println(max);
+		while(sum>9) {
+			sum = getSum(sum);
+			count++;
+		}
+		System.out.println(count);
+		
 		
 	}
  
+	private static long getSum(long sum) {
+	// TODO Auto-generated method stub
+		long ans =0;
+		while(sum!=0) {
+			ans+=sum%10;
+			sum=sum/10;
+		}
+	return ans;
+}
+
 	static void sort(int[] a) {
 		ArrayList<Integer> l=new ArrayList<>();
 		for (int i:a) l.add(i);

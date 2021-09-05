@@ -5,34 +5,30 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.StringTokenizer;
- 
-public class PetyaAndCountrySide {
- // Question Link : https://codeforces.com/contest/66/problem/B
+ // snippet
+public class EffectiveApproach {
+ // Question Link : http://codeforces.com/contest/227/problem/B
 	public static void main(String[] args) {
 		FastScanner sc=new FastScanner();
 		int T=sc.nextInt();
-		int arr[] = new int[T];
-		for (int tt=0; tt<T; tt++) {
-			arr[tt]=sc.nextInt();
-		}
-	  
-		int max =1;
-		for (int i = 0; i < arr.length; i++) {
-			int j =1;
-			int x = i;
-			int y = i;
-			while(x>0&&arr[x-1]-arr[x]<=0) {
-				j++;
-				x--;
-			}
-			while(y<T-1&&arr[y+1]-arr[y]<=0) {
-				y++;
-				j++;
-			}
-			max = Math.max(max, j);
-		}
-			System.out.println(max);
+		int a[] = new int[T];
+		int count[] = new int[T+1];
 		
+		for (int tt=0; tt<T; tt++) {
+			a[tt]= sc.nextInt();
+			count[a[tt]]=tt+1;
+		}
+		int q = sc.nextInt();
+		long x =0;
+		long y =0;
+		while(q-->0) {
+		int  n = sc.nextInt();
+		x+=count[n];
+		y+=T-count[n]+1;
+		}
+		System.out.println(x+" "+y);
+		
+
 	}
  
 	static void sort(int[] a) {

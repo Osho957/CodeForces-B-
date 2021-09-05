@@ -3,43 +3,51 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.StringTokenizer;
- 
-public class PetyaAndCountrySide {
- // Question Link : https://codeforces.com/contest/66/problem/B
+ // snippet
+public class BurglarAndMatches {
+ // Question Link : https://codeforces.com/contest/16/problem/B
 	public static void main(String[] args) {
 		FastScanner sc=new FastScanner();
-		int T=sc.nextInt();
-		int arr[] = new int[T];
-		for (int tt=0; tt<T; tt++) {
-			arr[tt]=sc.nextInt();
-		}
-	  
-		int max =1;
-		for (int i = 0; i < arr.length; i++) {
-			int j =1;
-			int x = i;
-			int y = i;
-			while(x>0&&arr[x-1]-arr[x]<=0) {
-				j++;
-				x--;
-			}
-			while(y<T-1&&arr[y+1]-arr[y]<=0) {
-				y++;
-				j++;
-			}
-			max = Math.max(max, j);
-		}
-			System.out.println(max);
+		int n = sc.nextInt();
+		int m = sc.nextInt();
+       int details[][] = new int[m][2];
+       
+       for (int i = 0; i < details.length; i++) {
+	for (int j = 0; j < 2; j++) {
+		details[i][j]= sc.nextInt();
+	}
+	
+	}
+       // to sort on basis of value
+       Arrays.sort(details,(a,b)->Integer.compare(a[1], b[1]));
+  
+       int ans =0;
+       
+       for (int i =details.length-1;i>=0; i--) {
+		
+			ans+=details[i][1]*Math.min(n,details[i][0]);
+			n-=Math.min(n,details[i][0]);
 		
 	}
- 
+       System.out.println(ans);
+		
+		
+	}
+	
+
+	
+
 	static void sort(int[] a) {
+		
 		ArrayList<Integer> l=new ArrayList<>();
 		for (int i:a) l.add(i);
 		Collections.sort(l);
 		for (int i=0; i<a.length; i++) a[i]=l.get(i);
+		
 	}
 	
 	static class FastScanner {

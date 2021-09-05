@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.StringTokenizer;
- 
+ // snippet
 public class A {
  // Question Link :
 	public static void main(String[] args) {
